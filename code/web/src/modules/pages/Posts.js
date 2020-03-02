@@ -18,30 +18,30 @@ import crateRoutes from '../../setup/routes/crate'
 import userRoutes from '../../setup/routes/user'
 
 // Component
-const Women = (props) => (
+const Posts = (props) => (
   <Grid alignCenter={true} style={{ padding: '2em' }}>
     {/* SEO */}
     <Helmet>
-      <title>Monthly supply of clothes and accessories for Women - Crate</title>
+      <title>Monthly supply of clothes and accessories for Men - Crate</title>
     </Helmet>
 
     {/* Left Content - Image Collage */}
     <GridCell>
       <Grid gutter={true} alignCenter={true}>
         <GridCell justifyCenter={true}>
-          <ImageTile width={300} height={530} shadow={level1} image={`${ APP_URL }/images/stock/women/1.jpg`} />
+          <ImageTile width={300} height={530} shadow={level1} image={`${ APP_URL }/images/stock/men/1.jpg`} />
         </GridCell>
 
         <GridCell>
           <Grid>
             <GridCell justifyCenter={true}>
-              <ImageTile width={170} height={250} shadow={level1} image={`${ APP_URL }/images/stock/women/2.jpg`} />
+              <ImageTile width={170} height={250} shadow={level1} image={`${ APP_URL }/images/stock/men/2.jpg`} />
             </GridCell>
           </Grid>
 
           <Grid>
             <GridCell justifyCenter={true}>
-              <ImageTile width={170} height={250} shadow={level1} image={`${ APP_URL }/images/stock/women/3.jpg`} style={{ marginTop: '1.9em' }} />
+              <ImageTile width={170} height={250} shadow={level1} image={`${ APP_URL }/images/stock/men/3.jpg`} style={{ marginTop: '1.9em' }} />
             </GridCell>
           </Grid>
         </GridCell>
@@ -50,7 +50,7 @@ const Women = (props) => (
 
     {/* Right Content */}
     <GridCell style={{ textAlign: 'center' }}>
-      <H2 font="secondary">Monthly crates for Women</H2>
+      <H2 font="secondary">Monthly crates for Men</H2>
 
       <H5 style={{ marginTop: '0.5em' }}>
         Save time. Look great. The personal styling service customized to your fit, lifestyle & spending preferences.
@@ -71,15 +71,15 @@ const Women = (props) => (
 )
 
 // Component Properties
-Women.propTypes = {
+Posts.propTypes = {
   user: PropTypes.object.isRequired
 }
 
 // Component State
-function womenState(state) {
+function postsState(state) {
   return {
     user: state.user
   }
 }
 
-export default connect(womenState, {})(Women)
+export default connect(postsState, {})(Posts)

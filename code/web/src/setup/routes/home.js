@@ -1,7 +1,7 @@
 // App Imports
 import Home from '../../modules/pages/Home'
-import Men from '../../modules/pages/Men'
-import Women from '../../modules/pages/Women'
+import Posts from '../../modules/pages/Posts'
+import NewPost from '../../modules/pages/NewPost'
 import HowItWorks from '../../modules/pages/HowItWorks'
 import WhatsNew from '../../modules/pages/WhatsNew'
 
@@ -13,19 +13,14 @@ export default {
     exact: true
   },
 
-  men: {
-    path: '/men',
-    component: Men
+  posts: {
+    path: '/posts',
+    component: Posts
   },
 
-  women: {
-    path: '/women',
-    component: Women
-  },
-
-  howItWorks: {
-    path: '/how-it-works',
-    component: HowItWorks
+  newPost: {
+    path: '/new-post',
+    component: NewPost
   },
 
   whatsNew: {
