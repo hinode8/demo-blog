@@ -15,14 +15,19 @@ import { routes } from '../routes'
 import { setUser } from '../../modules/user/api/actions'
 import App from '../client/App'
 import view from '../server/view'
+import logger from 'redux-logger'
 
 export default function (app) {
   console.info('SETUP - Load routes..')
 
+const middlewares = [thunk]
+if (process.env.NODE_ENV === 'dev') {
+  middlewares.push(logger);
+}
   // Store (new store for each request)
   const store = createStore(
     rootReducer,
-    applyMiddleware(thunk)
+    applyMiddleware(...middlewares)
   )
 
   // Match any Route

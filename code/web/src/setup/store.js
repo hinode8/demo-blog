@@ -2,6 +2,7 @@
 import { compose, combineReducers } from 'redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
+import logger from 'redux-logger'
 
 // App Imports
 import common from '../modules/common/api/state'
@@ -35,12 +36,17 @@ if (typeof window !== 'undefined') {
   delete window.__INITIAL_STATE__
 }
 
+const middlewares = [thunk]
+if (process.env.NODE_ENV === 'dev') {
+  middlewares.push(logger);
+}
+
 // Store
 export const store = createStore(
   rootReducer,
   initialState,
 
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(...middlewares),
   )
 )
