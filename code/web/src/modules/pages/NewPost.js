@@ -6,9 +6,12 @@ import { Helmet } from 'react-helmet';
 
 // UI Imports
 import { H2, H5 } from '../../ui/typography';
+import Button from '@material-ui/core/Button';
+import Icon from '../../ui/icon';
 import { Grid, GridCell } from '../../ui/grid';
 import ImageTile from '../../ui/image/Tile';
-import Input from '../../ui/input/Input';
+import { Input, Textarea } from '../../ui/input';
+import { white } from '../../ui/common/colors'
 
 // App Imports
 import { APP_URL } from '../../setup/config/env';
@@ -19,24 +22,37 @@ class NewPost extends Component {
     super(props);
 
     this.state = {
-      user: {
-        email: '',
-        password: '',
+      blogPost: {
+        id: 0,
+        title: '',
+        content: '',
       },
     };
 
     // Function bindings
   }
 
-  onChange = event => {};
+  onChange = event => {
+    let blogPost = this.state.blogPost;
+    blogPost[event.target.name] = event.target.value;
+
+    this.setState({
+      blogPost,
+    });
+  };
 
   onSubmit = event => {
     event.preventDefault();
+
+    this.setState({
+      isLoading: true,
+    });
+
+    this.props.messageShow('Saving crate, please wait...');
+
   };
 
   render() {
-    const { isLoading, error } = this.props.user;
-
     return (
       <Grid gutter={true} alignCenter={true} style={{ padding: '2em' }}>
         <Grid alignCenter={true} style={{ width: '100%' }}>
@@ -70,18 +86,40 @@ class NewPost extends Component {
             {/* Login Form */}
             <form onSubmit={this.onSubmit}>
               <div style={{ width: '25em', margin: '0 auto' }}>
-                {/* Email */}
+                {/* Title */}
                 <Input
-                  type="email"
+                  type="text"
                   fullWidth={true}
-                  placeholder="Email"
+                  placeholder="Title"
                   required="required"
-                  name="email"
-                  value={this.state.user.email}
+                  name="title"
+                  value={this.state.blogPost.title}
                   onChange={this.onChange}
                   style={{ marginTop: '1em' }}
                 />
-
+                {/* Description */}
+                <Textarea
+                  fullWidth={true}
+                  placeholder="Content"
+                  required="required"
+                  name="content"
+                  value={this.state.blogPost.content}
+                  onChange={this.onChange}
+                  style={{ marginTop: '1em' }}
+                />
+              </div>
+              <div style={{ marginTop: '2em', textAlign: 'center' }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={this.state.isLoading}
+                >
+                  <Icon size={1.2} style={{ color: white }}>
+                    check
+                  </Icon>{' '}
+                  Save
+                </Button>
               </div>
             </form>
           </GridCell>
