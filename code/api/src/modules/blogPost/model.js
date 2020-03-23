@@ -10,9 +10,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   })
 
-  BlogPost.associate = function(models) {
-    BlogPost.hasMany(models.Subscription)
-  }
-
   return BlogPost
 }
