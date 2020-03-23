@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { Link, withRouter } from 'react-router-dom';
 
 // UI Imports
 import { H2, H5 } from '../../ui/typography';
@@ -15,6 +16,11 @@ import { white } from '../../ui/common/colors'
 
 // App Imports
 import { APP_URL } from '../../setup/config/env';
+import {
+  createOrUpdate as blogPostCreateOrUpdate,
+  getById as getBlogPostById,
+} from '../blog/api/actions';
+import { messageShow, messageHide } from '../common/api/actions';
 
 // Component
 class NewPost extends Component {
@@ -48,19 +54,47 @@ class NewPost extends Component {
       isLoading: true,
     });
 
-    this.props.messageShow('Saving crate, please wait...');
+    this.props.messageShow('Saving blogPost, please wait...');
+
+    // Save blogPost
+    this.props
+      .blogPostCreateOrUpdate(this.state.blogPost)
+      .then(response => {
+        this.setState({
+          isLoading: false,
+        });
+
+        if (response.data.errors && response.data.errors.length > 0) {
+          this.props.messageShow(response.data.errors[0].message);
+        } else {
+          this.props.messageShow('blogPost saved successfully.');
+
+          this.props.history.push(admin.blogPostList.path);
+        }
+      })
+      .catch(error => {
+        this.props.messageShow('There was some error. Please try again.');
+
+        this.setState({
+          isLoading: false,
+        });
+      })
+      .then(() => {
+        window.setTimeout(() => {
+          this.props.messageHide();
+        }, 5000);
+      });
 
   };
+  
 
   render() {
     return (
       <Grid gutter={true} alignCenter={true} style={{ padding: '2em' }}>
         <Grid alignCenter={true} style={{ width: '100%' }}>
-          {/* SEO */}I
+          {/* SEO */}
           <Helmet>
-            <title>
-              Monthly supply of clothes and accessories for Women - Crate
-            </title>
+            <title>Create New Blog Post</title>
           </Helmet>
           {/* Content */}
           <GridCell style={{ textAlign: 'center' }}>
@@ -130,14 +164,17 @@ class NewPost extends Component {
 }
 // Component Properties
 NewPost.propTypes = {
-  user: PropTypes.object.isRequired,
+  blogPostCreateOrUpdate: PropTypes.func.isRequired,
+  getBlogPostById: PropTypes.func.isRequired,
+  messageShow: PropTypes.func.isRequired,
+  messageHide: PropTypes.func.isRequired,
 };
 
-// Component State
-function newPostState(state) {
-  return {
-    user: state.user,
-  };
-}
-
-export default connect(newPostState, {})(NewPost);
+export default withRouter(
+  connect(null, {
+    blogPostCreateOrUpdate,
+    getBlogPostById,
+    messageShow,
+    messageHide,
+  })(NewPost),
+);
