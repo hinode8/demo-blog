@@ -14,6 +14,7 @@ import home from '../../../setup/routes/home'
 import user from '../../../setup/routes/user'
 import crate from '../../../setup/routes/crate'
 import admin from '../../../setup/routes/admin'
+import blogPost from '../../../setup/routes/blogPost'
 import Logo from './Logo'
 import Menu from './Menu'
 import MenuItem from './MenuItem'
@@ -38,9 +39,9 @@ const Header = (props) => {
 
           {/* Left menu */}
           <Menu style={{ float: 'left', marginTop: '0.5em', marginLeft: '2em' }}>
-            <MenuItem to={home.posts.path}>Blog posts</MenuItem>
+            <MenuItem to={blogPost.blogPostList.path}>Blog posts</MenuItem>
 
-            <MenuItem to={home.newPost.path}>Create Post</MenuItem>
+            <MenuItem to={blogPost.blogPostCreate.path}>Create Post</MenuItem>
 
             <MenuItem to={home.whatsNew.path}>What's New</MenuItem>
           </Menu>
