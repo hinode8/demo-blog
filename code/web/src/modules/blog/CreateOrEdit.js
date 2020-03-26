@@ -12,7 +12,7 @@ import Icon from '../../ui/icon';
 import { Grid, GridCell } from '../../ui/grid';
 import ImageTile from '../../ui/image/Tile';
 import { Input, Textarea } from '../../ui/input';
-import { white } from '../../ui/common/colors'
+import { white } from '../../ui/common/colors';
 
 // App Imports
 import admin from '../../setup/routes/admin';
@@ -68,7 +68,7 @@ class CreateOrEdit extends Component {
         if (response.data.errors && response.data.errors.length > 0) {
           this.props.messageShow(response.data.errors[0].message);
         } else {
-          this.props.messageShow('blogPost saved successfully.'); 
+          this.props.messageShow('blogPost saved successfully.');
           this.props.history.push(admin.blogPostList.path);
         }
       })
@@ -84,81 +84,82 @@ class CreateOrEdit extends Component {
           this.props.messageHide();
         }, 5000);
       });
-
   };
-  
 
   render() {
     return (
-      <Grid gutter={true} alignCenter={true} style={{ padding: '2em' }}>
-        <Grid alignCenter={true} style={{ width: '100%' }}>
-          {/* SEO */}
-          <Helmet>
-            <title>Create New Blog Post</title>
-          </Helmet>
-          {/* Content */}
-          <GridCell style={{ textAlign: 'center' }}>
-            <Grid>
-              <GridCell justifyCenter={true}>
-                <ImageTile
-                  width={120}
-                  height={120}
-                  style={{ marginRight: 'Auto', marginLeft: 'Auto' }}
-                  image={`${APP_URL}/images/stock/newpost/1.png`}
-                />
-              </GridCell>
-            </Grid>
-            <H2 font="secondary">Create a Post</H2>
+      <div>
+        {/* SEO */}
+        <Helmet>
+          <title>Create New Blog Post</title>
+        </Helmet>
+        {/* Content */}
+        <Grid alignCenter={true} style={{ padding: '2em' }}> 
+          <Grid alignCenter={true} style={{ width: '100%' }}>
+            <GridCell style={{ textAlign: 'center' }}>
+              <Grid>
+                <GridCell justifyCenter={true}>
+                  <ImageTile
+                    width={120}
+                    height={120}
+                    style={{ marginRight: 'Auto', marginLeft: 'Auto' }}
+                    image={`${APP_URL}/images/stock/newpost/1.png`}
+                  />
+                </GridCell>
+              </Grid>
+              <H2 font="tertiary">Create a Post</H2>
 
-            <H5 style={{ marginTop: '0.5em' }}>
-              Keep it real and make the world better place!
-            </H5>
-          </GridCell>
+              <H5 style={{ marginTop: '0.5em' }}>
+                Keep it real and make the world better place!
+              </H5>
+            </GridCell>
+          </Grid>
+          {/* form */}
+          <Grid alignCenter={true} style={{ width: '100%' }}>
+            <GridCell style={{ textAlign: 'center' }}>
+              {/* Login Form */}
+              <form onSubmit={this.onSubmit}>
+                <div style={{ width: '25em', margin: '0 auto' }}>
+                  {/* Title */}
+                  <Input
+                    type="text"
+                    fullWidth={true}
+                    placeholder="Title"
+                    required="required"
+                    name="title"
+                    value={this.state.blogPost.title}
+                    onChange={this.onChange}
+                    style={{ marginTop: '1em' }}
+                  />
+                  {/* Description */}
+                  <Textarea
+                    fullWidth={true}
+                    placeholder="Content"
+                    required="required"
+                    name="content"
+                    value={this.state.blogPost.content}
+                    onChange={this.onChange}
+                    style={{ marginTop: '1em' }}
+                  />
+                </div>
+                <div style={{ marginTop: '2em', textAlign: 'center' }}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={this.state.isLoading}
+                  >
+                    <Icon size={1.2} style={{ color: white }}>
+                      check
+                    </Icon>{' '}
+                    Save
+                  </Button>
+                </div>
+              </form>
+            </GridCell>
+          </Grid>
         </Grid>
-        <Grid alignCenter={true} style={{ width: '100%' }}>
-          <GridCell style={{ textAlign: 'center' }}>
-            {/* Login Form */}
-            <form onSubmit={this.onSubmit}>
-              <div style={{ width: '25em', margin: '0 auto' }}>
-                {/* Title */}
-                <Input
-                  type="text"
-                  fullWidth={true}
-                  placeholder="Title"
-                  required="required"
-                  name="title"
-                  value={this.state.blogPost.title}
-                  onChange={this.onChange}
-                  style={{ marginTop: '1em' }}
-                />
-                {/* Description */}
-                <Textarea
-                  fullWidth={true}
-                  placeholder="Content"
-                  required="required"
-                  name="content"
-                  value={this.state.blogPost.content}
-                  onChange={this.onChange}
-                  style={{ marginTop: '1em' }}
-                />
-              </div>
-              <div style={{ marginTop: '2em', textAlign: 'center' }}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  disabled={this.state.isLoading}
-                >
-                  <Icon size={1.2} style={{ color: white }}>
-                    check
-                  </Icon>{' '}
-                  Save
-                </Button>
-              </div>
-            </form>
-          </GridCell>
-        </Grid>
-      </Grid>
+      </div>
     );
   }
 }
