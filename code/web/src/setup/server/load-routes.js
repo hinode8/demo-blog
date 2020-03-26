@@ -20,10 +20,10 @@ import logger from 'redux-logger'
 export default function (app) {
   console.info('SETUP - Load routes..')
 
-const middlewares = [thunk]
-if (process.env.NODE_ENV === 'development') {
-  middlewares.push(logger);
-}
+  const middlewares = [thunk]
+  if (process.env.NODE_ENV === 'development') {
+    middlewares.push(logger);
+  }
   // Store (new store for each request)
   const store = createStore(
     rootReducer,
