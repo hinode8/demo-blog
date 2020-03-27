@@ -15,7 +15,7 @@ import { Input, Textarea } from '../../ui/input';
 import { white } from '../../ui/common/colors';
 
 // App Imports
-import admin from '../../setup/routes/admin';
+import blogRoute from '../../setup/routes/blogPost';
 import { APP_URL } from '../../setup/config/env';
 import {
   createOrUpdate as blogPostCreateOrUpdate,
@@ -38,6 +38,33 @@ class CreateOrEdit extends Component {
 
     // Function bindings
   }
+
+  componentDidMount() {
+    // Get blogPost details (edit case)
+    this.getBlogPost(parseInt(this.props.match.params.id));
+  }
+
+
+  getBlogPost = blogPostId => {
+    if (blogPostId > 0) {
+      this.props
+        .getBlogPostById(blogPostId)
+        .then(response => {
+          if (response.data.errors && response.data.errors.length > 0) {
+            this.props.messageShow(response.data.errors[0].message);
+          } else {
+            this.setState({
+              blogPost: response.data.data.blogPostById,
+            });
+          }
+        })
+        .catch(error => {
+          this.props.messageShow(
+            'There was some error fetching blogPost types. Please try again.',
+          );
+        });
+    }
+  };
 
   onChange = event => {
     let blogPost = this.state.blogPost;
@@ -68,8 +95,8 @@ class CreateOrEdit extends Component {
         if (response.data.errors && response.data.errors.length > 0) {
           this.props.messageShow(response.data.errors[0].message);
         } else {
-          this.props.messageShow('blogPost saved successfully.');
-          this.props.history.push(admin.blogPostList.path);
+          this.props.messageShow('adminPost saved successfully.');
+          this.props.history.push(blogRoute.blogPostList.path);
         }
       })
       .catch(error => {
@@ -94,71 +121,88 @@ class CreateOrEdit extends Component {
           <title>Create New Blog Post</title>
         </Helmet>
         {/* Content */}
-        <Grid alignCenter={true} style={{ padding: '2em' }}> 
-          <Grid alignCenter={true} style={{ width: '100%' }}>
-            <GridCell style={{ textAlign: 'center' }}>
-              <Grid>
-                <GridCell justifyCenter={true}>
-                  <ImageTile
-                    width={120}
-                    height={120}
-                    style={{ marginRight: 'Auto', marginLeft: 'Auto' }}
-                    image={`${APP_URL}/images/stock/newpost/1.png`}
-                  />
-                </GridCell>
-              </Grid>
-              <H2 font="tertiary">Create a Post</H2>
+        <div>
+          {/* Top actions bar */}
+          <Grid alignCenter={true} style={{ padding: '1em' }}>
+            <GridCell style={{ textAlign: 'left' }}>
+              <Link to={blogRoute.blogPostList.path}>
+                <Button>
+                  <Icon size={1.2}>arrow_back</Icon> Back
+                </Button>
+              </Link>
+            </GridCell>
+          </Grid>
+          {/* Image */}
+          <Grid alignCenter={true} style={{ padding: '2em' }}>
+            <Grid alignCenter={true} style={{ width: '100%' }}>
+              <GridCell style={{ textAlign: 'center' }}>
+                <Grid>
+                  <GridCell justifyCenter={true}>
+                    <ImageTile
+                      width={120}
+                      height={120}
+                      style={{ marginRight: 'Auto', marginLeft: 'Auto' }}
+                      image={`${APP_URL}/images/stock/newpost/1.png`}
+                    />
+                  </GridCell>
+                </Grid>
 
-              <H5 style={{ marginTop: '0.5em' }}>
-                Keep it real and make the world better place!
-              </H5>
-            </GridCell>
+                {/* Page Title */}
+                <H2 font="tertiary">
+                  {this.props.match.params.id === undefined ? 'Create' : 'Edit'}{' '}
+                  Blog Post
+                </H2>
+                <H5 style={{ marginTop: '0.5em' }}>
+                  Keep it real and make the world better place!
+                </H5>
+              </GridCell>
+            </Grid>
+            {/* form */}
+            <Grid alignCenter={true} style={{ width: '100%' }}>
+              <GridCell style={{ textAlign: 'center' }}>
+                {/* Login Form */}
+                <form onSubmit={this.onSubmit}>
+                  <div style={{ width: '25em', margin: '0 auto' }}>
+                    {/* Title */}
+                    <Input
+                      type="text"
+                      fullWidth={true}
+                      placeholder="Title"
+                      required="required"
+                      name="title"
+                      value={this.state.blogPost.title}
+                      onChange={this.onChange}
+                      style={{ marginTop: '1em' }}
+                    />
+                    {/* Description */}
+                    <Textarea
+                      fullWidth={true}
+                      placeholder="Content"
+                      required="required"
+                      name="content"
+                      value={this.state.blogPost.content}
+                      onChange={this.onChange}
+                      style={{ marginTop: '1em' }}
+                    />
+                  </div>
+                  <div style={{ marginTop: '2em', textAlign: 'center' }}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      disabled={this.state.isLoading}
+                    >
+                      <Icon size={1.2} style={{ color: white }}>
+                        check
+                      </Icon>{' '}
+                      Save
+                    </Button>
+                  </div>
+                </form>
+              </GridCell>
+            </Grid>
           </Grid>
-          {/* form */}
-          <Grid alignCenter={true} style={{ width: '100%' }}>
-            <GridCell style={{ textAlign: 'center' }}>
-              {/* Login Form */}
-              <form onSubmit={this.onSubmit}>
-                <div style={{ width: '25em', margin: '0 auto' }}>
-                  {/* Title */}
-                  <Input
-                    type="text"
-                    fullWidth={true}
-                    placeholder="Title"
-                    required="required"
-                    name="title"
-                    value={this.state.blogPost.title}
-                    onChange={this.onChange}
-                    style={{ marginTop: '1em' }}
-                  />
-                  {/* Description */}
-                  <Textarea
-                    fullWidth={true}
-                    placeholder="Content"
-                    required="required"
-                    name="content"
-                    value={this.state.blogPost.content}
-                    onChange={this.onChange}
-                    style={{ marginTop: '1em' }}
-                  />
-                </div>
-                <div style={{ marginTop: '2em', textAlign: 'center' }}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    disabled={this.state.isLoading}
-                  >
-                    <Icon size={1.2} style={{ color: white }}>
-                      check
-                    </Icon>{' '}
-                    Save
-                  </Button>
-                </div>
-              </form>
-            </GridCell>
-          </Grid>
-        </Grid>
+        </div>
       </div>
     );
   }
