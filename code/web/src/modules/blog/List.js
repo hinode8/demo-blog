@@ -44,7 +44,7 @@ class List extends PureComponent {
               } else {
                 this.props.messageShow('BlogPost deleted successfully.');
 
-                this.props.getBlogPostList(false);
+                this.props.getBlogPostList('DESC');
               }
             } else {
               this.props.messageShow('Please try again.');
@@ -67,8 +67,6 @@ class List extends PureComponent {
   };
 
   render() {
-    let blogPosts = this.props.blogPosts;
-    
     const { isLoading, list } = this.props.blogPosts;
 
     return (
@@ -82,7 +80,7 @@ class List extends PureComponent {
         <Grid  alignCenter={true} >
           <Grid alignCenter={true} style={{ width: '100%'}}>
             <GridCell style={{ textAlign: 'center' }}>
-              <H2 font="secondary"> Blog Posts </H2>
+              <H2 font="tertiary"> Blog Posts </H2>
             </GridCell>
           </Grid>
 
@@ -176,7 +174,6 @@ List.propTypes = {
 
 // Component State
 function listState(state) {
-  console.log(state)
   return {
     blogPosts: state.blogPosts,
   };
