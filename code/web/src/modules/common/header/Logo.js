@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // UI Imports
-import { secondary } from '../../../ui/common/fonts'
+import { secondary, tertiary } from '../../../ui/common/fonts'
 import { textLevel2 } from '../../../ui/common/shadows'
 
 // App Imports
@@ -15,7 +15,7 @@ const Logo = (props) => {
 
   return (
     <Link to={home.home.path} {...others}>
-      <span style={{ fontFamily: secondary, fontSize: '4em', color: 'white', textShadow: textLevel2 }}>Juice</span>
+      <span style={{ fontFamily: tertiary, fontSize: '4em', color: 'white', textShadow: textLevel2 }}>Juice</span>
     </Link>
   )
 }

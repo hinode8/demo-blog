@@ -1,13 +1,13 @@
 // Imports
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // UI Imports
-import { primary, secondary } from '../common/fonts'
+import { primary, secondary, tertiary } from '../common/fonts';
 
 // Component
-const H2 = (props) => {
-  const { children, font, ...others } = props
+const H2 = props => {
+  const { children, font, ...others } = props;
 
   return (
     <h2 {...others}>
@@ -16,20 +16,26 @@ const H2 = (props) => {
       {/* language=CSS */}
       <style jsx>{`
         h2 {
-          font-family: ${ font === 'primary' ? primary : secondary };
+          font-family: ${font === 'primary'
+            ? primary
+            : font === 'secondary'
+            ? secondary
+            : font === 'tertiary'
+            ? tertiary
+            : primary};
           font-size: 3em;
         }
       `}</style>
     </h2>
-  )
-}
+  );
+};
 
 // Component Properties
 H2.propTypes = {
-  font: PropTypes.string
-}
+  font: PropTypes.string,
+};
 H2.defaultProps = {
-  font: 'primary'
-}
+  font: 'primary',
+};
 
-export default H2
+export default H2;
