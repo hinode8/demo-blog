@@ -43,7 +43,6 @@ class List extends PureComponent {
                 this.props.messageShow(response.data.errors[0].message);
               } else {
                 this.props.messageShow('BlogPost deleted successfully.');
-
                 this.props.getBlogPostList('DESC');
               }
             } else {
@@ -78,14 +77,14 @@ class List extends PureComponent {
 
         {/* Page Content */}
         <Grid  alignCenter={true} >
-          <Grid alignCenter={true} style={{ width: '100%'}}>
+          <Grid alignCenter={true} style={{ width: '100%', padding:'2em'}}>
             <GridCell style={{ textAlign: 'center' }}>
               <H2 font="tertiary"> Blog Posts </H2>
             </GridCell>
           </Grid>
 
           {/* BlogPost list */}
-          <Grid alignCenter={true} style={{ width: '100%', padding:'1em' }}>
+          <Grid alignCenter={true} style={{ width: '100%', padding:'0 1em' }}>
             <GridCell>
               <table className="striped">
                 <thead>
