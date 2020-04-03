@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // UI Imports
-import { primary, secondary } from '../common/fonts'
+import { primary, secondary, tertiary } from '../common/fonts'
 
 // Component
 const H1 = (props) => {
@@ -16,7 +16,13 @@ const H1 = (props) => {
       {/* language=CSS */}
       <style jsx>{`
         h1 {
-          font-family: ${ font === 'primary' ? primary : secondary };
+          font-family: ${font === 'primary'
+            ? primary
+            : font === 'secondary'
+            ? secondary
+            : font === 'tertiary'
+            ? tertiary
+            : primary};
           font-size: 4em;
         }
       `}</style>

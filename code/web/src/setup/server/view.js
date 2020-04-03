@@ -26,8 +26,7 @@ const index = (APP_URL, NODE_ENV, helmet = null, appHtml = '', styles = '', init
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Cinzel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Righteous&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     
     <!-- CSS - Reset -->

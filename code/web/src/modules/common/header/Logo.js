@@ -15,7 +15,7 @@ const Logo = (props) => {
 
   return (
     <Link to={home.home.path} {...others}>
-      <span style={{ fontFamily: tertiary, fontSize: '4em', color: 'white', textShadow: textLevel2 }}>Juice</span>
+      <span style={{ fontFamily: tertiary, fontSize: '4em', color: 'white', textShadow: textLevel2 }}>Juicy</span>
     </Link>
   )
 }

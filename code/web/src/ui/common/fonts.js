@@ -2,6 +2,7 @@
 
 export const primary = `'Roboto', sans-serif`
 
-export const secondary = `'Lobster', cursive`
+export const secondary = `'Comfortaa', cursive`
 
-export const tertiary = `'Cinzel', serif`
+export const tertiary = `'Righteous', cursive`
+
