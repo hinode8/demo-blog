@@ -38,7 +38,7 @@ const Home = (props) => (
 
       {/* Content */}
       <GridCell>
-        <H1 font="tertiary" style={{ textShadow: textLevel1 }}>Juicy</H1>
+        <H1 font="tertiary" style={{ textShadow: textLevel1 }}>Moca</H1>
 
         <H4 style={{ textShadow: textLevel1, marginTop: '0.5em' }}>
           Osaka Cafe Review Blog

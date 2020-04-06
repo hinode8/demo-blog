@@ -18,6 +18,10 @@ import blogPost from '../../../setup/routes/blogPost';
 import Logo from './Logo';
 import Menu from './Menu';
 import MenuItem from './MenuItem';
+import H4 from './../../../ui/typography/H4';
+import Icon from './../../../ui/icon/Icon';
+import { StylesProvider } from '@material-ui/core';
+import AccountButton from './AccountButton';
 
 // Component
 const Header = props => {
@@ -34,24 +38,40 @@ const Header = props => {
         top: 0,
       }}
     >
-      <Grid alignCenter={true} style={{ marginTop: '1.5em' }}>
+      <Grid alignCenter={true} style={{ marginTop: '0.6em' }}>
         <GridCell>
           {/* Logo */}
           <Logo style={{ float: 'left' }} />
 
           {/* Left menu */}
-          {props.user.isAuthenticated ? (
+          {props.user.isAuthenticated ? 
+              props.user.details.role === 'ADMIN' ? (
+                // admin menu
+                <Menu
+                  style={{ float: 'left', marginTop: '1.5em', marginLeft: '2em' }}
+                >
+                  <MenuItem to={blogPost.blogPostList.path}>Blog posts</MenuItem>
+                  <MenuItem to={blogPost.blogPostCreate.path}>Create Post</MenuItem>
+                </Menu>
+              )
+              : props.user.details.role === 'USER' ? ( 
+                // user menu
+                <Menu
+                  style={{ float: 'left', marginTop: '1.5em', marginLeft: '2em' }}
+                >
+                >
+                  <MenuItem to={blogPost.blogPostList.path}>Blog posts</MenuItem>
+                  <MenuItem to={blogPost.blogPostCreate.path}>Create Post</MenuItem>
+                </Menu>
+              ) :  (
+                // unreachable code 
+                <div></div>
+              )
+           : (
             <Menu
-              style={{ float: 'left', marginTop: '0.5em', marginLeft: '2em' }}
+              style={{ float: 'left', marginTop: '1.5em', marginLeft: '2em' }}
             >
-              <MenuItem to={blogPost.blogPostList.path}>Blog posts</MenuItem>
-              <MenuItem to={blogPost.blogPostCreate.path}>Create Post</MenuItem>
-            </Menu>
-          ) : (
-            <Menu
-              style={{ float: 'left', marginTop: '0.5em', marginLeft: '2em' }}
-            >
-              <MenuItem to={home.whatsNew.path}>What's New</MenuItem>
+              <MenuItem to={home.whatsNew.path}>All</MenuItem>
             </Menu>
           )}
         </GridCell>
@@ -59,18 +79,14 @@ const Header = props => {
         {/* Right menu */}
         <GridCell style={{ textAlign: 'right' }}>
           {props.user.isAuthenticated ? (
-            <Menu>
-              {props.user.details.role === 'ADMIN' && (
-                <MenuItem to={admin.dashboard.path} section="admin">
-                  Admin
-                </MenuItem>
-              )}
-
+            <Menu> 
               <MenuItem to={crate.list.path}>Crates</MenuItem>
 
               <MenuItem to={user.subscriptions.path}>Subscriptions</MenuItem>
 
-              <MenuItem to={user.profile.path}>Profile</MenuItem>
+              <AccountButton to={user.profile.path} style={{ borderStyle:'solid', borderWidth:'1px', marginLeft:'10px'}}>
+                {props.user.details.name}<Icon size={1.5}>person</Icon>
+              </AccountButton>
             </Menu>
           ) : (
             <Menu>

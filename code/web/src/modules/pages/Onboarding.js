@@ -63,7 +63,7 @@ class Onboarding extends PureComponent {
       <Grid alignCenter={true} style={{ height: '100%', textAlign: 'center', color: white }}>
         {/* Left - Headline and info */}
         <GridCell>
-          <H1 font="tertiary" style={{ textShadow: textLevel1 }}>Welcome to Juicy</H1>
+          <H1 font="tertiary" style={{ textShadow: textLevel1 }}>Welcome to Moca</H1>
 
           <H6 style={{ marginTop: '0.5em' }}>We provide the most detailed review of all ganre of restaurants in Osaka by our professional gourmet reviewrs.</H6>
 
