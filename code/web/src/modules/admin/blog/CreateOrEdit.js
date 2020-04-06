@@ -6,22 +6,22 @@ import { Helmet } from 'react-helmet';
 import { Link, withRouter } from 'react-router-dom';
 
 // UI Imports
-import { H2, H5 } from '../../ui/typography';
+import { H2, H5 } from '../../../ui/typography';
 import Button from '@material-ui/core/Button';
-import Icon from '../../ui/icon';
-import { Grid, GridCell } from '../../ui/grid';
-import ImageTile from '../../ui/image/Tile';
-import { Input, Textarea } from '../../ui/input';
-import { white } from '../../ui/common/colors';
+import Icon from '../../../ui/icon';
+import { Grid, GridCell } from '../../../ui/grid';
+import ImageTile from '../../../ui/image/Tile';
+import { Input, Textarea } from '../../../ui/input';
+import { white } from '../../../ui/common/colors';
 
 // App Imports
-import blogRoute from '../../setup/routes/blogPost';
-import { APP_URL } from '../../setup/config/env';
+import blogRoute from '../../../setup/routes/blogPost';
+import { APP_URL } from '../../../setup/config/env';
 import {
   createOrUpdate as blogPostCreateOrUpdate,
   getById as getBlogPostById,
-} from '../blog/api/actions';
-import { messageShow, messageHide } from '../common/api/actions';
+} from '../../blog/api/actions';
+import { messageShow, messageHide } from '../../common/api/actions';
 
 // Component
 class CreateOrEdit extends Component {

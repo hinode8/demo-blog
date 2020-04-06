@@ -4,17 +4,17 @@ import React, { PureComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import admin from '../../setup/routes/admin';
-import { black } from '../../ui/common/colors';
-import { Grid, GridCell } from '../../ui/grid';
-import Icon from '../../ui/icon';
+import admin from '../../../setup/routes/admin';
+import { black } from '../../../ui/common/colors';
+import { Grid, GridCell } from '../../../ui/grid';
+import Icon from '../../../ui/icon';
 // UI Imports
-import { H2 } from '../../ui/typography';
-import { messageHide, messageShow } from '../common/api/actions';
-import EmptyMessage from '../common/EmptyMessage';
-import Loading from '../common/Loading';
+import { H2 } from '../../../ui/typography';
+import { messageHide, messageShow } from '../../common/api/actions';
+import EmptyMessage from '../../common/EmptyMessage';
+import Loading from '../../common/Loading';
 // App Imports
-import { getList as getBlogPostList, remove as removeBlogPost } from './api/actions';
+import { getList as getBlogPostList, remove as removeBlogPost } from '../../blog/api/actions';
 
 // Component
 class List extends PureComponent {
@@ -79,7 +79,7 @@ class List extends PureComponent {
         <Grid  alignCenter={true} >
           <Grid alignCenter={true} style={{ width: '100%', padding:'2em'}}>
             <GridCell style={{ textAlign: 'center' }}>
-              <H2 font="tertiary"> Blog Posts </H2>
+              <H2 font="tertiary">Blog Posts</H2>
             </GridCell>
           </Grid>
 
