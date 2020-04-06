@@ -1,7 +1,7 @@
 // App Imports
 import params from '../../setup/config/params';
-import BlogPostList from '../../modules/blog/List';
-import BlogPostCreateOrEdit from '../../modules/blog/CreateOrEdit';
+import BlogPostList from '../../modules/admin/blog/List';
+import BlogPostCreateOrEdit from '../../modules/admin/blog/CreateOrEdit';
 
 // Admin blogPost routes
 export default {
