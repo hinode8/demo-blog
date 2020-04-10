@@ -12,4 +12,4 @@ export const APP_URL_API = process.env.APP_URL_API
 export const NODE_ENV = process.env.NODE_ENV
 
 // Port
-export const PORT = process.env.PORT || 3000
+export const PORT = process.env.PORT || 3001

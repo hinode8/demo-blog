@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "pass",
-    "database": "crate",
+    "database": "moca",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "seederStorage": "sequelize"
@@ -10,7 +10,7 @@
   "production": {
     "username": "root",
     "password": "pass",
-    "database": "crate",
+    "database": "moca",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "seederStorage": "sequelize"
