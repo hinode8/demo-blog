@@ -25,5 +25,5 @@
     - Run Webapp `cd web` and `npm start`, browse webapp at http://localhost:3001/
     - Use following prepared account to login as an administrator
         - Admin
-            - id:admin@crate.com
-            - pass: 123456
+            - id:admin@moca.com
+            - pass: pass
