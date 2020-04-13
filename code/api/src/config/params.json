@@ -11,6 +11,30 @@
       }
     }
   },
+  "blogPost":{
+    "area": {
+      "umeda": {
+        "id" : 1,
+        "name": "umeda" 
+      },
+      "yodoyabashi": {
+        "id" : 2,
+        "name": "Yodoya-Bashi" 
+      },
+      "honmachi": {
+        "id" : 3,
+        "name": "Honmachi" 
+      },
+      "shinsaibashi": {
+        "id" : 4,
+        "name": "Shinsai-bashi" 
+      },
+      "namba": {
+        "id" : 5,
+        "name": "Namba" 
+      }
+    }
+  },
   "user": {
     "roles": {
       "admin": "ADMIN",

@@ -17,6 +17,18 @@ export const blogPostCreate = {
     content: {
       name: 'content',
       type: GraphQLString
+    },
+    slug: {
+      name: 'slug',
+      type: GraphQLString
+    },
+    area: {
+      name: 'area',
+      type: GraphQLInt
+    },
+    image: {
+      name: 'image',
+      type: GraphQLString
     }
   },
   resolve: create
@@ -29,15 +41,25 @@ export const blogPostUpdate = {
     id: {
       name: 'id',
       type: GraphQLInt
-    },
-
+    }, 
     title: {
       name: 'title',
       type: GraphQLString
-    },
-
+    }, 
     content: {
       name: 'content',
+      type: GraphQLString
+    },
+    slug: {
+      name: 'slug',
+      type: GraphQLString
+    },
+    area: {
+      name: 'area',
+      type: GraphQLInt
+    },
+    image: {
+      name: 'image',
       type: GraphQLString
     }
   },

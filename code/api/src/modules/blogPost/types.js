@@ -10,6 +10,9 @@ const BlogPostType = new GraphQLObjectType({
     id: { type: GraphQLInt },
     title: { type: GraphQLString },
     content: { type: GraphQLString },
+    slug: { type: GraphQLString },
+    area: { type: GraphQLInt },
+    image: { type: GraphQLString },
     createdAt: { type: GraphQLString },
     updatedAt: { type: GraphQLString }
   })
