@@ -6,10 +6,10 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('blog_posts', [
       {
-        title: 'Cafe XXX',
-        content: 'cafe for adults only',
-        slug: 'cafe-xxx',
-        area: params.blogPost.area.umeda.id,
+        title: 'NINJA Cafe',
+        content: 'All clerks are disguised as barista',
+        slug: 'cafe-doom',
+        area: params.blogPost.area.namba.id,
         image: '',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -28,6 +28,15 @@ module.exports = {
         content: 'All customers will be enlightened',
         slug: 'cafe-socrates',
         area: params.blogPost.area.yodoyabashi.id,
+        image: '',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Cafe XXX',
+        content: 'cafe for adults only',
+        slug: 'cafe-xxx',
+        area: params.blogPost.area.umeda.id,
         image: '',
         createdAt: new Date(),
         updatedAt: new Date()
