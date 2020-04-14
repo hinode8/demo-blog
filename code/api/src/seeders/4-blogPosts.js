@@ -33,9 +33,9 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Cafe XXX',
-        content: 'cafe for adults only',
-        slug: 'cafe-xxx',
+        title: 'Star Trek cafe',
+        content: 'Spock brew the best coffee in the universe',
+        slug: 'star-trek',
         area: params.blogPost.area.umeda.id,
         image: '',
         createdAt: new Date(),
