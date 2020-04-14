@@ -7,6 +7,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     content: {
       type: DataTypes.TEXT
+    },
+    slug: {
+      type: DataTypes.STRING
+    },
+    area: {
+      type: DataTypes.INTEGER
+    },
+    image: {
+      type: DataTypes.TEXT
     }
   })
 

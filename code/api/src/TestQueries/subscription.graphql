@@ -1,0 +1,34 @@
+# graphql query for test purpose 
+# not used by application
+
+# all subscriptions
+{
+  subscriptions {
+    user {
+      id
+      name
+      email
+      password
+      role
+    }
+    crate{
+      id
+      name
+      description
+    }    
+  } 
+}
+
+# single subscription
+{
+  subscription(id: 1) {
+    user {
+      id
+      name
+    }
+    crate {
+      id
+      name
+    }
+  }
+}
